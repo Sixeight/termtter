@@ -20,7 +20,6 @@ describe Termtter::Client, 'when the plugin cool is loaded' do
 
   after do
     config.system.cmd_mode = false
-    Termtter::Client.exit
     $stdout = @old_stdout
   end
 
