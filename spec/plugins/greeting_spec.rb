@@ -2,7 +2,7 @@
 
 require File.dirname(__FILE__) + '/../spec_helper'
 
-describe Termtter::Client, 'when the plugin cool is loaded' do
+describe Termtter::Client, 'when the plugin greeting is loaded' do
   before do
     $stdout, @old_stdout = StringIO.new, $stdout # FIXME That suspends any debug informations!
     @update_arg, @update_params = [], []
@@ -15,7 +15,7 @@ describe Termtter::Client, 'when the plugin cool is loaded' do
       a.should_receive(:text).and_return(arg)
       a
     }
-    Termtter::Client.plug 'cool'
+    Termtter::Client.plug 'greeting'
   end
 
   after do
