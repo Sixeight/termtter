@@ -4,10 +4,13 @@ config.plugins.keyword.set_default(:ignores, [])
 module Termtter::Client
   register_hook(
     :name => :highlight_keywords,
-    :point => :pre_coloring) do |text, event|
-    query = config.plugins.keyword.keywords.map {|q|Regexp.quote(q)}.join("|")
-    text.gsub(/(#{query})/i, '<on_green><white>\1</white></on_green>')
-  end
+    :point => :pre_coloring,
+    :exec => lambda { |text, event|
+      return text unless config.plugins.keyword.keywords.length > 0
+      query = config.plugins.keyword.keywords.map {|q|Regexp.quote(q)}.join("|")
+      text.gsub(/(#{query})/i, '<on_green><white>\1</white></on_green>')
+    }
+  )
 
   register_hook(
     :name => :ignore,
